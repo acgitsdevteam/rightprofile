@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Welcome to Syntell India Pvt Ltd</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="brand-logo">
+        <a href="index.html"><img src="images/logo-img.png" width="150" height="55" alt=""></a>
+      </div>
+      <ul class="nav">
+        <li><a href="dashboard.html"><span class="fa fa-desktop"></span>Dashboard</a> </li>
+        <li><a href="personaldisscusion.html"><span class="fas fa-university"></span>Personal Disscussion</a> </li>
+        <li><a href="#"><span class="fa fa-regular fa-file-import"></span>Import PD</a> </li>
+        <li><a href="#"><span class="fa fa-regular fa-file-export"></span>Export</a> </li>
+        <li><a href="users.html"><span class="fa fa-regular fas fa-mobile-alt"></span>Users</a> </li>
+      </ul>
+    </div>
+   
+    <div class="top-bar">
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <span class="icon-menu"></span>
+      </button>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown no-arrow user-menu">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="user-avatar-icon">sivaraju &nbsp;&nbsp;&nbsp;<span class="fa fa-cog fa-lg"></span>
+            <span class="d-none d-lg-inline text-gray-600 small"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+              Profile
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+              Settings
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+              Activity Log
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="login.html">
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content-wrapper-user">
+      <div class="col-md-4 col-lg-6 mb-2 mt-1">
+        <div class="title-header">
+          <h2>Users</h2>
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Delete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tab4-tab" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="false">Edit</a>
+        </li>
+      </ul>
+      
+
+      <div class="tab-content custom-tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+            <div class="col-md-4 col-lg-6 mb-2 mt-3">
+                <div class="title-header"><h2>Applicants List</h2></div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-1 label-end">UserId:</div>
+                <div class="col-3 ">
+                <input type="text" class="form-control" id="userid" >
+              </div>
+              <div class="col-3"></div>
+              <div class="col-1">User Type:</div>
+                <div class="col-3 form-group">
+                    <select name="cars"  class="mb-2" style="width: 210px;height: 45px;">
+                        <option value=""></option>
+                        <option value="Edelweiss">Edelweiss</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Test">Test</option>
+                        <option value="AdityaBirla">AdityaBirla</option>
+                      </select>
+              </div>
+             
+            </div>
+            <div class="form-actions">
+                <div class="row justify-content-center">
+                  <div class="col-sm-12 text-center">
+                      <button type="button" class="btn btn-danger">Search</button> 
+                  </div>
+              </div>      
+              </div>
+              <div class="card-box p-4 mh-62">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">User Name</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">User Type</th>
+                            <th scope="col">User Role</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Lock | Unlock</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>14750</td>
+                            <td>Syntellect</td>
+                            <td>Admin</td>
+                            <td>User</td>
+                            <td><button class="btn btn-outline-primary btn-sm rounded-circle mr-1">
+                                <span class="icon-pencil"></span>
+                            </button></td>
+                            <td>
+                                <label class="toggle-button">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>ep0601</td>
+                            <td>Edelweiss</td>
+                            <td>Edelweiss</td>
+                            <td>User</td>
+                            <td><button class="btn btn-outline-primary btn-sm rounded-circle mr-1">
+                                <span class="icon-pencil"></span>
+                            </button></td>
+                            <td>
+                                <label class="toggle-button">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>ep0602</td>
+                            <td>Edelweiss</td>
+                            <td>Edelweiss</td>
+                            <td>Super User</td>
+                            <td><button class="btn btn-outline-primary btn-sm rounded-circle mr-1">
+                                <span class="icon-pencil"></span>
+                            </button></td>
+                            <td>
+                                <label class="toggle-button">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>ashok.r</td>
+                            <td>ashok</td>
+                            <td>Test</td>
+                            <td>Super User</td>
+                            <td><button class="btn btn-outline-primary btn-sm rounded-circle mr-1">
+                                <span class="icon-pencil"></span>
+                            </button></td>
+                            <td>
+                                <label class="toggle-button">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>CM3</td>
+                            <td>CM3</td>
+                            <td>Test</td>
+                            <td>User</td>
+                            <td><button class="btn btn-outline-primary btn-sm rounded-circle mr-1">
+                                <span class="icon-pencil"></span>
+                            </button></td>
+                            <td>
+                                <label class="toggle-button">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <nav>
+                    <ul class="pagination justify-content-end mb-0">
+                      <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                      </li>
+                      <li class="page-item "><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+              </div>
+        
+        </div>
+        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+            <form action="dashboard.html" class="page-section">
+                <h5><strong>Create User</strong></h5>
+                <div class="row align-items-center">
+                  <div class="col-1">First name:</div>
+                  <div class="col-3 form-group">
+                  <input type="text" class="form-control" id="username" >
+                </div>
+                <div class="col-1 ">
+                  Last name:</div>
+                  <div class="col-3 form-group">
+                  <input type="text" class="form-control" id="username" >
+                </div>
+                <div class="col-1 form-group">
+                  E-mail:</div>
+                  <div class="col-3 form-group">
+                  <input type="text" class="form-control" id="username" >
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-1">Mobile :</div>
+                <div class="col-3 form-group">
+                  <form>
+                    <input type="text" class="form-control" id="username" >
+                  </form>
+              </div>
+              <div class="col-1 form-group">
+                User Id :</div>
+                <div class="col-3 form-group">
+                    <input type="text" class="form-control" id="username" >
+              </div>
+              <div class="col-1 form-group">
+                Password:</div>
+                <div class="col-3 form-group">
+                    <input type="password" class="form-control" id="username" >
+              </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-1 ">User Role :</div>
+                <div class="col-3 form-group">
+                  <form>
+                    <select name="cars"  class="mb-2" style="width: 210px;height: 40px;">
+                      <option value=""></option>
+                      <option value="Edelweiss">Super User</option>
+                      <option value="Admin">User</option>
+                    </select>
+                  </form>
+              </div>
+              <div class="col-1 form-group">
+                Start :</div>
+                <div class="col-3 form-group">
+                    <form>
+                        <select name="cars"  class="mb-2" style="width: 210px;height: 40px;">
+                          <option value=""></option>
+                          <option value="Edelweiss">Edelweiss</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Test">Test</option>
+                          <option value="AdityaBirla">AdityaBirla</option>
+                        </select>
+                      </form>
+              </div>
+            </div>
+            
+              
+                <!-- <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-danger"><a href="dashboard.html">Login</a>
+                    
+                </button>
+              </div>         -->
+              <div class="form-actions">
+                <div class="row justify-content-center">
+                  <div class="col-sm-12 text-center">
+                      <button type="button" class="btn btn-danger">Create User</button>
+                  </div>
+              </div>      
+              </div>
+              </form>
+        </div>
+        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+            <form action="dashboard.html" class="page-section">
+                <h5><strong>Delete User</strong></h5>
+                <div class="row ">
+                  <div class="col-1">User id:</div>
+                  <div class="col-3 form-group">
+                  <input type="text" class="form-control" id="username" >
+                </div>
+                <div class="col-2"></div>
+                <div class="col-1 ">
+                  User Type:</div>
+                  <div class="col-3 form-group">
+                    <form>
+                        <select name="cars"  class="mb-2" style="width: 210px;height: 40px;">
+                          <option value=""></option>
+                          <option value="Edelweiss">Edelweiss</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Test">Test</option>
+                          <option value="AdityaBirla">AdityaBirla</option>
+                        </select>
+                      </form>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div class="row justify-content-center">
+                  <div class="col-sm-12 text-center">
+                      <button type="button" class="btn btn-danger">Delete User</button>
+                  </div>
+              </div>      
+              </div>
+              </form>
+        </div>
+        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+            <form action="dashboard.html" class="page-section">
+                <h5><strong>Edit Password</strong></h5>
+                <div class="row ">
+                  <div class="col-1">User id:</div>
+                  <div class="col-3 form-group">
+                  <input type="text" class="form-control" id="username" >
+                </div>
+                <div class="col-1 ">
+                  User Type:</div>
+                  <div class="col-3 form-group">
+                    <form>
+                        <select name="cars"  class="mb-2" style="width: 210px;height: 40px;">
+                          <option value=""></option>
+                          <option value="Edelweiss">Edelweiss</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Test">Test</option>
+                          <option value="AdityaBirla">AdityaBirla</option>
+                        </select>
+                      </form>
+                </div>
+                <div class="col-1 ">
+                    New Password:</div>
+                    <div class="col-3 form-group">
+                        <input type="password" class="form-control" id="password" >
+                  </div>
+              </div>
+              <div class="form-actions">
+                <div class="row justify-content-center">
+                  <div class="col-sm-12 text-center">
+                      <button type="button" class="btn btn-danger">Update User Password</button>
+                  </div>
+              </div>      
+              </div>
+              </form>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#sidebarToggleTop").click(function () {
+        $(".wrapper").toggleClass("sidebarToggle");
+        $(".hamburger").toggleClass("open");
+      });
+
+      $("#hamburgerClose").click(function () {
+        $(".wrapper").removeClass("sidebarToggle");
+        $(".hamburger").removeClass("open");
+      });
+    });
+  </script>
+</body>
+
+</html>
