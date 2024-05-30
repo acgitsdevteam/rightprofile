@@ -89,6 +89,15 @@ a:hover {
     width: 100px;
     text-align: center;
 }
+.content-wrapper-user-tab {
+    padding: 0px 30px 30px 30px;
+    margin-left: 232px;
+}
+.content-wrapper-user-tab a {
+    color: #999 !important;
+    width: 168px;
+    text-align: center;
+}
 .toggle-button {
     position: relative;
     display: inline-block;
@@ -259,11 +268,18 @@ label {
 .navbar-light .navbar-nav .nav-link:hover {
     color: rgba(0, 0, 0, .5);
 }
-
-
+.table-responsive .table td, .table-responsive .table th {
+    padding: 0.10rem; 
+    vertical-align: middle;
+    height: 10px;
+}
+.table-row {
+    height: 10px !important;
+    background-color: red;
+}
 
 .form-control {
-    height: calc(2em + 0.75rem + 2px);
+     height: calc(2em + 0.75rem + 2px);
 }
 .header-section h1 {
     font-family: 'Michroma', sans-serif;
@@ -320,6 +336,10 @@ label {
 }
 .nav.nav-tabs.custom-tabs {
     background-color: #ddd !important;
+}
+.loan-dropdown{
+    width: 210px;
+    height: 40px;
 }
 
 @media screen and (max-width: 767px) {
