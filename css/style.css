@@ -341,6 +341,14 @@ label {
     width: 210px;
     height: 40px;
 }
+.custom-row-height {
+    height: 50px;
+}
+.custom-row-height-bg{
+    background-color:#e1c9c9;
+    height: 60px;
+    border-radius: 8px;
+}
 
 @media screen and (max-width: 767px) {
     .sidebar {
@@ -357,7 +365,15 @@ label {
         font-size: 30px;
         font-weight: bold;
     }
-
+    .table-responsive .table td, .table-responsive .table th {
+        padding: 0.10rem; 
+        vertical-align: middle;
+        height: 10px;
+    }
+    .table-row {
+        height: 10px !important;
+        background-color: red;
+    }
 
 
     .customer-item {
