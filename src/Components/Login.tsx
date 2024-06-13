@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Form, FormControl, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.png';
 import axios from 'axios';
@@ -18,6 +19,7 @@ const Login = () => {
   const [user, setUser] = useState({});
   const [branches, setBranches] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [errors, setErrors] = useState({
     usertype: '',
     password: '',
@@ -30,6 +32,8 @@ const Login = () => {
     username: '',
     edbranch: ''
   });
+
+  const navigate = useNavigate();
 
   const customStyles = {
     checkbox: {
@@ -88,12 +92,17 @@ const Login = () => {
       };
       axios.post('https://3.7.159.34/rightprofile/api/auth/', encodedString, { headers })
         .then(response => {
-          console.log("Response data", response)
+          console.log("Login Response data", response)
+          localStorage.setItem("user_data",JSON.stringify(response.data));
+          setErrorMsg("");
+          navigate("/personal")
         }).catch((error) => {
           console.log("Error response:", error)
+          setErrorMsg("Invalid Username or Password")
         });
     } else {
-      console.log("Validation failed")
+      console.log("Validation failed");
+      //setErrorMsg("Validation errors occured")
     }
 
   }
@@ -128,8 +137,7 @@ const Login = () => {
       newErrors.edbranch = 'Please select the branch';
     }
 
-    //console.log("validation block")
-
+    
     setErrors(newErrors);
     return Object.values(newErrors).every(x => x === '');
   };
@@ -154,48 +162,7 @@ const Login = () => {
   // },[]);
 
 
-  const loginHandler = () => {
-
-
-    let maskedCredentials = {
-      usertype: '',
-      password: '',
-      username: ''
-    };
-    const credentials = {
-      username: 'psivaraju',
-      password: 'psivaraju',
-      usertype: 'Test',
-    };
-
-    maskedCredentials.usertype = btoa(credentials.usertype);
-    maskedCredentials.password = btoa(credentials.password);
-    maskedCredentials.username = btoa(credentials.username);
-    // if (credentials.usertype === "AdityaBirla") {
-    //   maskedCredentials.edbranch = btoa(credentials.edbranch);
-    // }
-
-    var encodedString = '';
-    for (var i = 0; i < JSON.stringify(maskedCredentials).length; i++) {
-      // Get the character code of each character in the input
-      const charCode = JSON.stringify(maskedCredentials).charCodeAt(i);
-      // Add 1 to the character code and convert it back to character
-      const encodedChar = String.fromCharCode(charCode + 1);
-      // Append the encoded character to the encoded string
-      encodedString += encodedChar;
-    }
-
-    const headers = {
-      'Content-Type': 'text/plain',
-    };
-    axios.post('https://3.7.159.34/rightprofile/api/auth/', encodedString, { headers })
-      .then(response => {
-        console.log("Response data", response)
-      }).catch((error) => {
-        console.log("Error response:", error)
-      });
-  }
-
+  
 
   return (
     <React.Fragment>
@@ -215,6 +182,7 @@ const Login = () => {
                   <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="" width="400" height="70" />
                 </Navbar.Brand>
                 <h3 className="mb-4 mt-3 fw-400">Login to RightProfile™ Portal</h3>
+                <div className='text-danger mb-1'>{errorMsg}</div>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3">
                     <Form.Select as="select" name="usertype" onChange={handleChange} className="mb-2" style={{ width: '230px' }}>
@@ -256,6 +224,7 @@ const Login = () => {
                       id="showPassword"
                       label="Show Password"
                       onClick={togglePasswordVisibility}
+                      style={{fontWeight:400}}
 
                     />
                   </Form.Group>
@@ -268,6 +237,7 @@ const Login = () => {
               </div>
             </Col>
           </Row>
+          
         </Container>
       </div>
     </React.Fragment>

@@ -356,8 +356,14 @@ label {
 }
 
 .custom-form-label {
-    font-weight: normal; /* or any other value you prefer */
+    font-weight: 400; /* or any other value you prefer */
   }
+
+  .loading-img {
+    position: fixed;
+    left: 53%;
+    top: 55%;
+}
 
 @media screen and (max-width: 767px) {
     .sidebar {
