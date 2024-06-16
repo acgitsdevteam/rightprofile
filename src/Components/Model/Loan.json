@@ -1,0 +1,139 @@
+{
+    "application": {
+        "bankparticulars": {
+            "logindate": "NAN",
+            "location": {
+                "branch": "NAN"
+            }
+        },
+        "loanamount": 0,
+        "loanpurpose": "NAN",
+        "foir": 0,
+        "loanrecommended": 0,
+        "lcr": 0,
+        "affordableemi": 0
+    },
+    "applicants": [],
+    "status": "NAN",
+    "userid": "NAN",
+    "householdexpense": {
+        "expenses": [
+            {
+                "code": "FOOD",
+                "item": "Food / Kirana, Clothing and daily requirement expenses",
+                "amount": 0
+            },
+            {
+                "code": "RENT",
+                "item": "Rent of residence premise",
+                "amount": 0
+            },
+            {
+                "code": "MED",
+                "item": "Medical expenses of regular nature",
+                "amount": 0
+            },
+            {
+                "code": "SCHOOL",
+                "item": "Schooling fees",
+                "amount": 0
+            },
+            {
+                "code": "TUTION",
+                "item": "Private tuition fees",
+                "amount": 0
+            },
+            {
+                "code": "ELEC",
+                "item": "Electricity",
+                "amount": 0
+            },
+            {
+                "code": "PHONE",
+                "item": "Landline bill",
+                "amount": 0
+            },
+            {
+                "code": "MOBILE",
+                "item": "Mobile bill",
+                "amount": 0
+            },
+            {
+                "code": "TRAVEL",
+                "item": "Travel and Conveyance",
+                "amount": 0
+            },
+            {
+                "code": "HOTEL",
+                "item": "Hotel expenses",
+                "amount": 0
+            },
+            {
+                "code": "ENTERTAIN",
+                "item": "Entertainment",
+                "amount": 0
+            },
+            {
+                "code": "CC",
+                "item": "Credit card payment",
+                "amount": 0
+            },
+            {
+                "code": "INS",
+                "item": "Insurance premium",
+                "amount": 0
+            },
+            {
+                "code": "FHELP",
+                "item": "Family help",
+                "amount": 0
+            }
+        ]
+    },
+    "property": {
+        "contributions": [
+            {
+                "code": "PL",
+                "contribution": "Personal Loan",
+                "amount": 0
+            },
+            {
+                "code": "ASSET",
+                "contribution": "Sale of Assets / Property",
+                "amount": 0
+            },
+            {
+                "code": "JEWELLERY",
+                "contribution": "Sale of Jewellery",
+                "amount": 0
+            },
+            {
+                "code": "SAV",
+                "contribution": "Savings",
+                "amount": 0
+            },
+            {
+                "code": "INVESTMENT",
+                "contribution": "Disposal of Investment",
+                "amount": 0
+            },
+            {
+                "code": "CS",
+                "contribution": "Credit Society",
+                "amount": 0
+            },
+            {
+                "code": "CF",
+                "contribution": "Chit Fund",
+                "amount": 0
+            },
+            {
+                "code": "FRIENDS",
+                "contribution": "Friends / Relatives / Family",
+                "amount": 0
+            }
+        ],
+        "natureofworkflag": false,
+        "lapSelected": false
+    }
+}
