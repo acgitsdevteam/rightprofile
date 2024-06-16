@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import SideMenu from './Layout/SideMenu';
-import { Outlet, Route, Link, NavLink } from 'react-router-dom';
+import { Outlet, Route, Link, NavLink, useNavigate } from 'react-router-dom';
 import { Tabs, Tab, Button } from 'react-bootstrap';
 import { Form, Col, Row, FormControl } from 'react-bootstrap';
 import { edbranchList, loanPurposes, dropDownLists } from './Services/Branches';
+import axios from 'axios';
+
+import myLoan from '././Model/Loan.json';
 
 
 const LoanCreationPhases = () => {
@@ -12,6 +15,95 @@ const LoanCreationPhases = () => {
 
   const [subTabkey, setSubTabKey] = useState<string>('applicant');
   const [innerSubKey, setInnerSubKey] = useState<string>('applicant');
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
+    const [errorMsg, setErrorMsg] = useState('');
+    const [formData, setFormData] = useState({
+        loanAmountRequested: 0,
+        customerAffordableEmi: 0,
+        purposeOfLoan: '',
+        edbranch: ''
+    });
+    const axiosInstance = axios.create({
+        baseURL: 'https://3.7.159.34/rightprofile/api/', // Replace with your API base URL
+        // timeout: 1000,                      // Set a timeout if needed
+        //headers: { 'Content-Type': 'application/json' }
+    });
+    const navigate = useNavigate();
+
+    const [errors, setErrors] = useState({
+        loanAmountRequested: '',
+        customerAffordableEmi: '',
+        purposeOfLoan: '',
+        edbranch: ''
+    });
+    const checkValidation = () => {
+        const newErrors = {
+            loanAmountRequested: '',
+            customerAffordableEmi: '',
+            purposeOfLoan: '',
+            edbranch: ''
+        };
+
+       
+
+        if (!formData.loanAmountRequested) {
+            newErrors.loanAmountRequested = 'Please enter Loan Amount';
+        }
+
+        if (!formData.customerAffordableEmi) {
+            newErrors.customerAffordableEmi = 'Please enter Emi Payment Amount';
+        }
+
+        if (!formData.purposeOfLoan) {
+            newErrors.purposeOfLoan = 'Please Enter Purpose of Loan';
+        }
+
+        if (!formData.edbranch) {
+            newErrors.edbranch = 'Please select the branch';
+        }
+
+
+        setErrors(newErrors);
+        return Object.values(newErrors).every(x => x === '');
+    };
+
+    const updateLoanJson = () => {
+        myLoan.application.loanamount = formData.loanAmountRequested;
+        myLoan.application.affordableemi = formData.customerAffordableEmi;
+        myLoan.application.loanpurpose = formData.purposeOfLoan;
+        myLoan.application.bankparticulars.location.branch = formData.edbranch;
+        myLoan.application.bankparticulars.logindate = currDate + ' ' + currTime;
+        myLoan.userid = 'psivraju';
+       
+    };
+
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        if (checkValidation()) {
+            console.log("Form submitted");
+           
+        }
+
+
+        updateLoanJson();
+
+        const headers = {
+            'Content-Type': 'text/plain',
+        };
+        axios.post('https://3.7.159.34/rightprofile/api/app/reach', myLoan, { headers })
+            .then(response => {
+                console.log("Login Response data", response)
+                localStorage.setItem("loan_data", JSON.stringify(response.data));
+                setErrorMsg("");
+                navigate("/personal")
+            }).catch((error) => {
+                console.log("Error response:", error)
+                setErrorMsg("Invalid Username or Password")
+            });
+
+    } 
 
   return (
     <>
@@ -65,7 +157,10 @@ const LoanCreationPhases = () => {
                       </Form.Group>
                     </Col>
                     <Col md={3}>
-                      <Form.Group controlId="branch">
+                                          <Form.Group controlId="branch
+
+
+">
                         <Form.Label className="custom-form-label">Branch *</Form.Label>
                         <Form.Select style={{ fontSize: '16px', height: '40px' }} size="lg" aria-label="Select the branch">
                           <option value=""></option>
@@ -88,7 +183,7 @@ const LoanCreationPhases = () => {
             </div>
 
             <div style={{ marginTop: '100px' }}>
-              <span style={{ marginTop: '30px' }}>Applicant Number</span> | <span style={{ marginTop: '30px' }}>Login Date</span>
+                          <span style={{ marginTop: '30px' }}>Applicant Number</span> | <span style={{ marginTop: '30px' }}>Login Date : {currDate} {currTime}</span>
             </div>
 
           </Tab>
@@ -670,7 +765,7 @@ const LoanCreationPhases = () => {
 
       <div style={{ float: 'right' }}>
         <Button variant="danger"><span style={{ borderRadius: '50%', backgroundColor: '#fff', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-left text-danger"></i></span> Cancel</Button>
-        <Button style={{ background: '#ffe600', margin: '3px', borderColor: '#ffe600' }}>Save & Continue <span style={{ borderRadius: '50%', backgroundColor: '#fff', color: '#ffe600', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-right text-yellow"></i></span></Button>
+        <Button type="submit" style={{ background: '#ffe600', margin: '3px', borderColor: '#ffe600' }}>Save & Continue <span style={{ borderRadius: '50%', backgroundColor: '#fff', color: '#ffe600', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-right text-yellow"></i></span></Button>
         <Button variant="success">Finalize <span style={{ borderRadius: '50%', backgroundColor: '#fff', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-right text-success"></i></span></Button>
 
       </div>
