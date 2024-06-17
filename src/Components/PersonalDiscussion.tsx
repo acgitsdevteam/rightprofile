@@ -20,6 +20,7 @@ interface Header {
   "Content-Type": string;
 }
 
+const BASE_URL=process.env.BACKEND_URL;
 
 const PersonalDiscussion = () => {
   
@@ -125,7 +126,7 @@ const PersonalDiscussion = () => {
         }
 
         const response = await axios.post(
-          "https://3.7.159.34/rightprofile/api/app/list",
+          "`${BASE_URL}/app/list`",
           filterData,
           config
         );
@@ -136,7 +137,7 @@ const PersonalDiscussion = () => {
         filterData.page = 0;
 
         const countResponse = await axios.post(
-          "https://3.7.159.34/rightprofile/api/app/countbysearch",
+          "`${BASE_URL}/app/countbysearch`",
           filterData,
           config
         );

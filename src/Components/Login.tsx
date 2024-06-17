@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button, Form, FormControl, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.png';
+//import logo from './logo.png';
 import axios from 'axios';
 import styled from 'styled-components';
 import { edbranchList } from './Services/Branches';
 
+const BASE_URL=process.env.BACKEND_URL;
 
 const axiosInstance = axios.create({
-  baseURL: 'https://3.7.159.34/rightprofile/api/', // Replace with your API base URL
+  baseURL: `${BASE_URL}`, // Replace with your API base URL
   // timeout: 1000,                      // Set a timeout if needed
   //headers: { 'Content-Type': 'application/json' }
 });
@@ -90,7 +91,7 @@ const Login = () => {
       const headers = {
         'Content-Type': 'text/plain',
       };
-      axios.post('https://3.7.159.34/rightprofile/api/auth/', encodedString, { headers })
+      axios.post(`${BASE_URL}/auth/`, encodedString, { headers })
         .then(response => {
           console.log("Login Response data", response)
           localStorage.setItem("user_data",JSON.stringify(response.data));
@@ -151,7 +152,7 @@ const Login = () => {
 
   // useEffect(() => {
   //   console.log("useEffect hook is called")
-  //   axios.get('https://3.7.159.34/rightprofile/api/hdfc/cd/list')
+  //   axios.get(`${BASE_URL}/hdfc/cd/list`)
   //       .then(response => {
   //         console.log("Branches data", response);
   //         setBranches(response.data);

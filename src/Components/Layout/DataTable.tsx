@@ -16,6 +16,8 @@ interface Header {
   "Content-Type": string;
 }
 
+const BASE_URL=process.env.BACKEND_URL;
+
 const DataTable = () => {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
