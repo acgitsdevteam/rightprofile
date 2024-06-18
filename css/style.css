@@ -201,12 +201,13 @@ label {
 }
 
 .top-bar .navbar-nav li {
-    margin-left: 20px;
-    line-height: 36px;
+    margin-right:20px;
+    line-height:36px;
 }
 
 .top-bar .navbar-nav li a {
     color: #303030;
+
 }
 
 .fs-18 {
@@ -349,6 +350,59 @@ label {
     height: 60px;
     border-radius: 8px;
 }
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+  }
+
+  .table th, .table td {
+    padding: 1rem;
+    border: none;
+  }
+
+  /* .table thead th {
+   background-color: red;
+    color: white;
+  } */
+
+  .table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+
+  .table a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .table a:hover {
+    text-decoration: underline;
+  } 
+  .pull-right {
+    float: right !important;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #dd5826;
+    border-color: #ca4e20;
+}
+.submit-cancel-btn {
+    color: #130b0b;
+    background-color: #ffe600;
+    border-color: #ffe600;
+}
+.btn-success {
+    color: #fff;
+    background-color: #64bd63;
+    border-color: #52b551;
+}
+.month{
+    background-color:#dd5826;
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+}
+
 
 @media screen and (max-width: 767px) {
     .sidebar {
