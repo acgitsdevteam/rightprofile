@@ -402,7 +402,18 @@ label {
     border-radius: 5px;
     padding: 3px;
 }
+.form-group {
+    margin-bottom: 1rem;
+}
 
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+label {
+    font-size: 0.875rem;
+}
 
 @media screen and (max-width: 767px) {
     .sidebar {
