@@ -8,14 +8,30 @@ import axios from 'axios';
 
 import myLoan from '././Model/Loan.json';
 
-
+interface UserData {
+    token: string;
+    userId: string;
+    usertype: string;
+    role: string;
+    // Add other fields if necessary
+}
 const LoanCreationPhases = () => {
   const [key, setKey] = useState<string>('loanInfo');
   const [innerKey, setInnerKey] = useState<string>('applicant');
 
   const [subTabkey, setSubTabKey] = useState<string>('applicant');
   const [innerSubKey, setInnerSubKey] = useState<string>('applicant');
-  const currDate = new Date().toLocaleDateString();
+  debugger; 
+  const month=new Date().getMonth()+1;
+  let smonth='';
+  if(month<10)
+      smonth = '0' + month;
+  else
+     smonth=month.toString();
+ const year = new Date().getFullYear();
+const date = new Date().getDate();
+const currDate = date + "/" + smonth + "/" + year;
+  
   const currTime = new Date().toLocaleTimeString();
     const [errorMsg, setErrorMsg] = useState('');
     const [formData, setFormData] = useState({
@@ -37,6 +53,13 @@ const LoanCreationPhases = () => {
         purposeOfLoan: '',
         edbranch: ''
     });
+
+    const handleChange = (e: any) => {
+        debugger;
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+        console.log("Form Data:", formData)
+    };
     const checkValidation = () => {
         const newErrors = {
             loanAmountRequested: '',
@@ -69,18 +92,26 @@ const LoanCreationPhases = () => {
     };
 
     const updateLoanJson = () => {
+        console.log("loan Form Data:", formData.loanAmountRequested);
         myLoan.application.loanamount = formData.loanAmountRequested;
+
+        console.log("emi Form Data:", formData.customerAffordableEmi);
         myLoan.application.affordableemi = formData.customerAffordableEmi;
+
+        console.log("purpose Form Data:", formData.purposeOfLoan);
         myLoan.application.loanpurpose = formData.purposeOfLoan;
+
+        console.log("branch Form Data:", formData.edbranch);
         myLoan.application.bankparticulars.location.branch = formData.edbranch;
         myLoan.application.bankparticulars.logindate = currDate + ' ' + currTime;
-        myLoan.userid = 'psivraju';
+        myLoan.userid = 'psivaraju';
+
+        console.log("Json Form Data:", myLoan);
        
     };
 
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
+    const SubmitData = async () => {
         if (checkValidation()) {
             console.log("Form submitted");
            
@@ -89,8 +120,16 @@ const LoanCreationPhases = () => {
 
         updateLoanJson();
 
+        const userData = localStorage.getItem("user_data");
+        if (!userData) {
+            throw new Error("No user data found in local storage");
+        }
+
+        const user: UserData = JSON.parse(userData);
+       debugger;
         const headers = {
-            'Content-Type': 'text/plain',
+            "Authorization": "Bearer " + user.token,
+            "Content-Type": "application/json"
         };
         axios.post('https://3.7.159.34/rightprofile/api/app/reach', myLoan, { headers })
             .then(response => {
@@ -132,21 +171,21 @@ const LoanCreationPhases = () => {
                 <Form>
                   <Row className="mb-3">
                     <Col md={3}>
-                      <Form.Group controlId="loanAmountRequested">
+                      <Form.Group controlId="loanAmountRequestedid">
                         <Form.Label className="custom-form-label">Loan Amount Requested *</Form.Label>
-                        <Form.Control style={{ fontSize: '16px', height: '40px' }} type="number" min="15000" />
+                        <Form.Control name="loanAmountRequested" onChange={handleChange} style={{ fontSize: '16px', height: '40px' }} type="number" min="15000" value={formData.loanAmountRequested} />
                       </Form.Group>
                     </Col>
                     <Col md={3}>
-                      <Form.Group controlId="customerAffordableEmi">
+                      <Form.Group controlId="customerAffordableEmiid">
                         <Form.Label className="custom-form-label">Customer Affordable EMI *</Form.Label>
-                        <Form.Control style={{ fontSize: '16px', height: '40px' }} type="number" min="800" />
+                        <Form.Control name="customerAffordableEmi" onChange={handleChange} style={{ fontSize: '16px', height: '40px' }} type="number" min="800" value={formData.customerAffordableEmi} />
                       </Form.Group>
                     </Col>
                     <Col md={3}>
-                      <Form.Group controlId="purposeOfLoan">
+                      <Form.Group controlId="purposeOfLoanid">
                         <Form.Label className="custom-form-label">Purpose of Loan *</Form.Label>
-                        <Form.Select size="lg" style={{ fontSize: '16px', height: '40px' }} aria-label="Select Purpose of loan">
+                        <Form.Select size="lg" name="purposeOfLoan" onChange={handleChange} style={{ fontSize: '16px', height: '40px' }} aria-label="Select Purpose of loan">
                           <option></option>
                           {
                             loanPurposes.map((item, i) => (<option key={i} value={item.key}>{item.value}</option>)
@@ -157,15 +196,12 @@ const LoanCreationPhases = () => {
                       </Form.Group>
                     </Col>
                     <Col md={3}>
-                                          <Form.Group controlId="branch
-
-
-">
+                       <Form.Group controlId="branchid">
                         <Form.Label className="custom-form-label">Branch *</Form.Label>
-                        <Form.Select style={{ fontSize: '16px', height: '40px' }} size="lg" aria-label="Select the branch">
+                        <Form.Select name="edbranch" onChange={handleChange} style={{ fontSize: '16px', height: '40px' }} size="lg" aria-label="Select the branch">
                           <option value=""></option>
                           {
-                            edbranchList.map((item, i) => (<option key={i} value={item.type}>{item.type}</option>)
+                            edbranchList.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>)
                             )
                           }
                         </Form.Select>
@@ -765,7 +801,7 @@ const LoanCreationPhases = () => {
 
       <div style={{ float: 'right' }}>
         <Button variant="danger"><span style={{ borderRadius: '50%', backgroundColor: '#fff', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-left text-danger"></i></span> Cancel</Button>
-        <Button type="submit" style={{ background: '#ffe600', margin: '3px', borderColor: '#ffe600' }}>Save & Continue <span style={{ borderRadius: '50%', backgroundColor: '#fff', color: '#ffe600', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-right text-yellow"></i></span></Button>
+              <Button type="button" onClick={SubmitData} style={{ background: '#ffe600', margin: '3px', borderColor: '#ffe600' }}>Save & Continue <span style={{ borderRadius: '50%', backgroundColor: '#fff', color: '#ffe600', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-right text-yellow"></i></span></Button>
         <Button variant="success">Finalize <span style={{ borderRadius: '50%', backgroundColor: '#fff', display: 'inline-block', width: '23px', height: '23px' }}><i className="fa fa-arrow-right text-success"></i></span></Button>
 
       </div>
