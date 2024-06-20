@@ -962,7 +962,7 @@
                                     <h4>Site Visits</h4>
                                 </div>
                             </div>
-                            <div class="card-box  mh-50">
+                            <div class="card-box mh-50">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -977,25 +977,155 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="pull-right mt-3 mb-3"
-                            ><button type="submit" class="btn btn-danger submit-button">
-                            <span class="circle bg-white"><i class="fa fa-arrow-left text-danger"></i></span>&nbsp;Cancel</button>
-                             <button type="submit" class="btn submit-cancel-btn submit-button">Save &amp; Continue &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-yellow"></i></span></button>
-                             <button type="submit" class="btn btn-success submit-button">Finalize &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-success"></i></span></button>
+                            <div class="">
+                                <h5>EMPLOYER PREMISE</h5>
                             </div>
+                            <div data-toggle="collapse" class="visit-default-panel" data-target="#details1" aria-expanded="false" aria-controls="details1">
+                                <details>
+                                    <summary>Site Visited</summary>
+                                    <div>
+                                        <div class="row align-items-center">
+                                            <div class="col-2 form-group">
+                                                <label for="siteVisitedDropdown">Site Visited *</label>
+                                                <select name="" class="site-dropdown mb-2" id="siteVisitedDropdown">
+                                                    <option value="">Bussiness Premise</option>
+                                                    <option value="">Employer Premise</option>
+                                                    <option value="">Residence</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2 form-group">
+                                                <label for="placeVisited">Place Visited</label>
+                                                <select name="placeVisited" class="site-dropdown mb-2">
+                                                    <option></option>
+                                                    <option value="">Educational Institute</option>
+                                                    <option value="">Factory</option>
+                                                    <option value="">Godown</option>
+                                                    <option value="">Office</option>
+                                                    <option value="">Sales Site</option>
+                                                    <option value="">Shop</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2 form-group">
+                                                <label for="areaSeen">Area seen(sq ft)</label>
+                                                <input type="number" class="form-control" id="areaSeen">
+                                            </div>
+                                            <div class="col-2 form-group">
+                                                <label for="visitDate">Visit Date</label>
+                                                <input type="date" class="form-control" id="visitDate">
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="nameBoardSignage">
+                                                    <label class="form-check-label" for="nameBoardSignage">
+                                                        <i class="fas fa-sign fa-lg fa-prim" style="color: #218bc3;"></i> Name board/Signage?
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                        </div>
+                        <div data-toggle="collapse" class="visit-default-panel" data-target="#details1" aria-expanded="false" aria-controls="details1">
+                            <details>
+                                <summary class="d-flex justify-content-between align-items-center">
+                                    <span> <i class="fas fa-file-upload fa-lg mr-2"></i>Site Visit Videos 
+                                         <div class="mt-3">
+                                    <i class="fas fa-cloud-upload-alt fa-lg fa-alt" style="color: red;"></i></span>
+                                   
+                                </summary>
+                                <div class="center-text">
+                                    <div>
+                                        <div class="row align-items-end">
+                                            <h5>No Videos</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                        
+                    <div data-toggle="collapse" class="visit-default-panel" data-target="#details1" aria-expanded="false" aria-controls="details1">
+                        <details>
+                            <summary class="d-flex justify-content-between align-items-center">
+                                <span> <i class="fas fa-file-upload fa-lg mr-2"></i>Site Visit Photos 
+                                     <div class="mt-3">
+                                <i class="fas fa-cloud-upload-alt fa-lg fa-alt" style="color: red;"></i></span>
+                               
+                            </summary>
+                            <div class="center-text">
+                                <div>
+                                    <div class="row align-items-end">
+                                        <h5>No Photos</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                    
+                <div class="container">
+                    <div class="text mb-3">
+                        <fieldset>
+                            
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="employeesSeen">
+                                        <label class="form-check-label" for="employeesSeen">
+                                            Employees Seen?
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2 form-group">
+                                    <label for="noOfEmployees">No of employees *</label>
+                                    <input type="number" class="form-control" id="noOfEmployees">
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="customersSeen">
+                                        <label class="form-check-label" for="customersSeen">
+                                            Customers Seen?
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2 form-group">
+                                    <label for="noOfCustomers">No of customers *</label>
+                                    <input type="number" class="form-control" id="noOfCustomers">
+                                </div>
+                                <div class="col-2 form-group">
+                                    <label for="activityLevel">Activity Level</label>
+                                    <select name="" class="site-dropdown mb-2" id="activityLevel">
+                                        <option value="">Good</option>
+                                        <option value="">Moderate</option>
+                                        <option value="">Weak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-12 form-group">
+                                    <label for="remarks">Remarks:</label>
+                                    <textarea class="form-control" id="remarks" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row justify-content-end mt-3">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-danger">Save</button>
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="pull-right mt-3 mb-3"
+                    ><button type="submit" class="btn btn-danger submit-button">
+                    <span class="circle bg-white"><i class="fa fa-arrow-left text-danger"></i></span>&nbsp;Cancel</button>
+                     <button type="submit" class="btn submit-cancel-btn submit-button">Save &amp; Continue &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-yellow"></i></span></button>
+                     <button type="submit" class="btn btn-success submit-button">Finalize &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-success"></i></span></button>
+                    </div>
                         </div>
                         <div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
                             <h4 class="mt-3">

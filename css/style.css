@@ -342,6 +342,10 @@ label {
     width: 210px;
     height: 40px;
 }
+.site-dropdown{
+    width: 120px;
+    height:45px;
+}
 .custom-row-height {
     height: 50px;
 }
@@ -406,13 +410,99 @@ label {
     margin-bottom: 1rem;
 }
 
-.form-check {
+label {
+    font-size: 0.875rem;
+}
+.visit-default-panel {
+    border: none;
+    box-shadow: 0 7px 40px 1px #e1e1e1;
+    margin-bottom: 50px;
+    padding: 20px 30px;
+}
+
+details {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+summary {
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+summary::marker {
+    display: none;
+}
+
+summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-left: 10px;
+    transition: transform 0.3s;
+    color: #165c82;
+}
+
+details[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.site-dropdown {
+    width: 100%;
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.text fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.summary-content {
     display: flex;
     align-items: center;
 }
 
-label {
-    font-size: 0.875rem;
+.summary-content i {
+    margin-right: 10px;
+}
+
+.summary-icons {
+    display: flex;
+    align-items: center;
+}
+.text fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media screen and (max-width: 767px) {
