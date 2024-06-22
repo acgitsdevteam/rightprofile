@@ -21,7 +21,6 @@ const LoanCreationPhases = () => {
 
   const [subTabkey, setSubTabKey] = useState<string>('applicant');
   const [innerSubKey, setInnerSubKey] = useState<string>('applicant');
-  debugger; 
   const month=new Date().getMonth()+1;
   let smonth='';
   if(month<10)
@@ -31,14 +30,72 @@ const LoanCreationPhases = () => {
  const year = new Date().getFullYear();
 const date = new Date().getDate();
 const currDate = date + "/" + smonth + "/" + year;
+  let currTime='';
+  const chrs = new Date().getHours();
+  const cmins = new Date().getMinutes();
+  const csecs = new Date().getSeconds();
+  let ampm='';
+   if(chrs < 10)
+    {
+    currTime = 0 + chrs.toString() + ':';
+    ampm=" AM";
+    }
+  else
+  {
+    currTime =  chrs.toString() + ':';
+    if(chrs > 12)
+      {
+        if (chrs- 12 < 10)
+        currTime = "0" + (chrs - 12).toString() + ':';
+        else
+        currTime = (chrs - 12).toString() + ':';
+        ampm = " PM";
+      }
+      else
+        ampm="AM";
+    
+  }
+   if(cmins < 10) 
+    currTime = currTime + 0 + cmins.toString() + ':';
+    else
+    currTime = currTime + cmins.toString() + ':';
+
+    if(csecs < 10) 
+      currTime = currTime + 0 + csecs.toString();
+      else
+      currTime = currTime + csecs.toString()
+    
+      currTime = currTime + ampm;
   
-  const currTime = new Date().toLocaleTimeString();
+
     const [errorMsg, setErrorMsg] = useState('');
     const [formData, setFormData] = useState({
         loanAmountRequested: 0,
         customerAffordableEmi: 0,
         purposeOfLoan: '',
-        edbranch: ''
+        edbranch: '',
+        address1:'',
+        address2:'',
+        children:0,
+        city:'',
+        currentmntresident:'',
+        dependents:'',
+        distance:'',
+        district:'',
+        dob:'',
+        earningmembers:'',
+        firstname:'',
+        gender:'',
+        lastname:'',
+        locality:'',
+        parent:'',
+        pincode:'',
+        qualification:'',
+        residentofcityyrs:'',
+        sister:'',
+        spouse:'',
+        state:'',
+        totalmembers:''
     });
     const axiosInstance = axios.create({
         baseURL: 'https://3.7.159.34/rightprofile/api/', // Replace with your API base URL
@@ -55,7 +112,6 @@ const currDate = date + "/" + smonth + "/" + year;
     });
 
     const handleChange = (e: any) => {
-        debugger;
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
         console.log("Form Data:", formData)
@@ -97,6 +153,7 @@ const currDate = date + "/" + smonth + "/" + year;
 
         console.log("emi Form Data:", formData.customerAffordableEmi);
         myLoan.application.affordableemi = formData.customerAffordableEmi;
+        
 
         console.log("purpose Form Data:", formData.purposeOfLoan);
         myLoan.application.loanpurpose = formData.purposeOfLoan;
@@ -112,6 +169,9 @@ const currDate = date + "/" + smonth + "/" + year;
 
 
     const SubmitData = async () => {
+      try
+      {
+
         if (checkValidation()) {
             console.log("Form submitted");
            
@@ -126,21 +186,30 @@ const currDate = date + "/" + smonth + "/" + year;
         }
 
         const user: UserData = JSON.parse(userData);
-       debugger;
+ 
         const headers = {
             "Authorization": "Bearer " + user.token,
             "Content-Type": "application/json"
-        };
+            };
         axios.post('https://3.7.159.34/rightprofile/api/app/reach', myLoan, { headers })
             .then(response => {
+               debugger;
                 console.log("Login Response data", response)
                 localStorage.setItem("loan_data", JSON.stringify(response.data));
                 setErrorMsg("");
                 navigate("/personal")
             }).catch((error) => {
                 console.log("Error response:", error)
-                setErrorMsg("Invalid Username or Password")
+                setErrorMsg("Could not submit Information! Plese retry after sometime")
             });
+
+          }
+
+          catch(error)
+          {
+            console.log("Error response:", error)
+             setErrorMsg("failed api call")
+          }
 
     } 
 
@@ -273,7 +342,7 @@ const currDate = date + "/" + smonth + "/" + year;
                           <div className="form-group row mt-4">
                             <div className="col-sm-12 text-left">
                               <div className="form-check">
-                                <input type="checkbox" className="custom-form-label form-check-input" id="Active" />
+                                <input type="checkbox" name='isPrimary' onChange={handleChange} className="custom-form-label form-check-input" id="Active" />
                                 <label className="custom-form-label form-check-label" htmlFor="Active">Primary Applicant</label>
                               </div>
                             </div>
@@ -282,25 +351,25 @@ const currDate = date + "/" + smonth + "/" + year;
                           <Form className="page-section">
                             <Row className="mt-3">
                               <Col md={3}>
-                                <Form.Group controlId="">
+                                <Form.Group controlId="applicantforid">
                                   <Form.Label className="custom-form-label">On Application For*:</Form.Label>
-                                  <FormControl type="text" className="form-control" name="applicantfor" />
+                                  <FormControl type="text" onChange={handleChange} className="form-control" name="applicantfor" />
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
                                 <Form.Label className="custom-form-label" >Applicant Type*:</Form.Label>
-                                <FormControl type="text" className="form-control" id="lastname1" />
+                                <FormControl type="text" onChange={handleChange} name="lastname1" className="form-control" id="lastname1" />
                               </Col>
                               <Col md={3}>
                                 <Form.Group className="form-check mt-4">
-                                  <FormControl type="checkbox" className="form-check-input" id="Active" />
+                                  <FormControl name="headoffamily" onChange={handleChange} type="checkbox" className="form-check-input" id="Active" />
                                   <Form.Label className="custom-form-label form-check-label mx-2" htmlFor="Active">Head Of Family</Form.Label>
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="qualification">
+                                <Form.Group controlId="qualificationid">
                                   <Form.Label className="custom-form-label" >Qualification *</Form.Label>
-                                  <Form.Control as="select" name="qualification" >
+                                  <Form.Control as="select" onChange={handleChange} name="qualification" >
                                     <option value=""></option>
                                     {
                                       dropDownLists.QUALIFICATION.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
@@ -312,30 +381,30 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={3}>
-                                <Form.Group controlId="firstname">
+                                <Form.Group controlId="firstnameid">
                                   <Form.Label className="custom-form-label">First Name</Form.Label>
-                                  <FormControl type="text" className="form-control" name="firstname" />
+                                  <FormControl type="text" onChange={handleChange} className="form-control" name="firstname" />
                                 </Form.Group>
                               </Col>
 
                               <Col md={3}>
-                                <Form.Group controlId="lastName">
+                                <Form.Group controlId="lastNameid">
                                   <Form.Label className="custom-form-label" >Last Name</Form.Label>
-                                  <FormControl type="text" className="form-control" name="lastname" />
+                                  <FormControl type="text" onChange={handleChange} className="form-control" name="lastname" />
                                 </Form.Group>
                               </Col>
 
                               <Col md={3}>
-                                <Form.Group controlId="dob">
+                                <Form.Group controlId="dobid">
                                   <Form.Label className="custom-form-label" >Date Of Birth:</Form.Label>
-                                  <FormControl type="date" className="form-control" name="dob" />
+                                  <FormControl type="date" onChange={handleChange} className="form-control" name="dob" />
                                 </Form.Group>
                               </Col>
 
                               <Col md={3}>
-                                <Form.Group controlId="lastName">
+                                <Form.Group controlId="genderid">
                                   <Form.Label className="custom-form-label" >Gender</Form.Label>
-                                  <Form.Control as="select" name="gender" >
+                                  <Form.Control as="select" name="gender" onChange={handleChange} >
                                     <option value=""></option>
                                     {
                                       dropDownLists.Gender.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
@@ -347,9 +416,9 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={4}>
-                                <Form.Group controlId="pincode">
+                                <Form.Group controlId="pincodeid">
                                   <Form.Label className="custom-form-label">Pin Code</Form.Label>
-                                  <FormControl type="number" min="0" className="form-control" name="firstname" />
+                                  <FormControl type="number" min="0" onChange={handleChange} className="form-control" name="pincode" />
                                 </Form.Group>
                               </Col>
                               <Col md={2} className='mt-37'>
@@ -361,21 +430,21 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={4}>
-                                <Form.Group controlId="address1">
+                                <Form.Group controlId="address1id">
                                   <Form.Label className="custom-form-label">Address Line 1 *</Form.Label>
-                                  <FormControl type="text" name="address1" />
+                                  <FormControl type="text" onChange={handleChange} name="address1" />
                                 </Form.Group>
                               </Col>
                               <Col md={4}>
-                                <Form.Group controlId="address2">
+                                <Form.Group controlId="address2id">
                                   <Form.Label className="custom-form-label">Address Line 2 *</Form.Label>
-                                  <FormControl type="text" name="address2" />
+                                  <FormControl type="text" onChange={handleChange} name="address2" />
                                 </Form.Group>
                               </Col>
                               <Col md={4}>
-                                <Form.Group controlId="state">
+                                <Form.Group controlId="stateid">
                                   <Form.Label className="custom-form-label">State / Union Territory *</Form.Label>
-                                  <FormControl type="number" name="state" />
+                                  <FormControl type="number" onChange={handleChange} name="state" />
                                 </Form.Group>
                               </Col>
 
@@ -383,75 +452,75 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={4}>
-                                <Form.Group controlId="city">
+                                <Form.Group controlId="cityid">
                                   <Form.Label className="custom-form-label">City / Village *</Form.Label>
-                                  <FormControl type="text" name="city" />
+                                  <FormControl type="text" onChange={handleChange} name="city" />
                                 </Form.Group>
                               </Col>
                               <Col md={4}>
-                                <Form.Group controlId="district">
+                                <Form.Group controlId="districtid">
                                   <Form.Label className="custom-form-label">District *</Form.Label>
-                                  <FormControl type="text" name="district" />
+                                  <FormControl type="text" onChange={handleChange} name="district" />
                                 </Form.Group>
                               </Col>
                               <Col md={4}>
-                                <Form.Group controlId="locality">
+                                <Form.Group controlId="localityid">
                                   <Form.Label className="custom-form-label">Locality *</Form.Label>
-                                  <FormControl type="text" name="locality" />
+                                  <FormControl type="text"onChange={handleChange} name="locality" />
                                 </Form.Group>
                               </Col>
 
                             </Row>
 
                             <Row className="mt-3">
-                              <Form.Group controlId="distance" className="form-check mt-4">
-                                <FormControl name="distance" type="checkbox" className="form-check-input" />
+                              <Form.Group controlId="distanceid" className="form-check mt-4">
+                                <FormControl name="distance" onChange={handleChange} type="checkbox" className="form-check-input" />
                                 <Form.Label className="custom-form-label form-check-label mx-2" >Select to calculate the distance between the proposed property and the current residence.</Form.Label>
                               </Form.Group>
                             </Row>
 
                             <Row className="mt-3">
-                              <Form.Group controlId="dependents" className="form-check mt-4">
-                                <FormControl name="distance" type="checkbox" className="form-check-input" />
+                              <Form.Group controlId="dependentsid" className="form-check mt-4">
+                                <FormControl name="dependents" onChange={handleChange} type="checkbox" className="form-check-input" />
                                 <Form.Label className="custom-form-label form-check-label mx-2" >Dependents?</Form.Label>
                               </Form.Group>
                             </Row>
 
                             <Row className="mt-3">
                               <Col md={2}>
-                                <Form.Group controlId="spouse">
+                                <Form.Group controlId="spouseid">
                                   <Form.Label className="custom-form-label">Spouse (Number)</Form.Label>
-                                  <FormControl type="number" min="0" name="spouse" />
+                                  <FormControl type="number" onChange={handleChange} min="0" name="spouse" />
                                 </Form.Group>
                               </Col>
                               <Col md={2}>
-                                <Form.Group controlId="parent">
+                                <Form.Group controlId="parentid">
                                   <Form.Label className="custom-form-label">Parents (Number)</Form.Label>
-                                  <FormControl type="number" min="0" name="parent" />
+                                  <FormControl type="number" onChange={handleChange} min="0" name="parent" />
                                 </Form.Group>
                               </Col>
                               <Col md={2}>
-                                <Form.Group controlId="brother">
+                                <Form.Group controlId="brotherid">
                                   <Form.Label className="custom-form-label">Brother (Number)</Form.Label>
-                                  <FormControl type="number" min="0" name="brother" />
+                                  <FormControl type="number" onChange={handleChange} min="0" name="brother" />
                                 </Form.Group>
                               </Col>
                               <Col md={2}>
-                                <Form.Group controlId="sister">
+                                <Form.Group controlId="sisterid">
                                   <Form.Label className="custom-form-label">Sister (Number)</Form.Label>
-                                  <FormControl type="number" min="0" name="sister" />
+                                  <FormControl type="number" min="0" onChange={handleChange} name="sister" />
                                 </Form.Group>
                               </Col>
                               <Col md={2}>
-                                <Form.Group controlId="children">
-                                  <Form.Label className="custom-form-label">Brother (Number)</Form.Label>
-                                  <FormControl type="number" min="0" name="children" />
+                                <Form.Group controlId="childrenid">
+                                  <Form.Label className="custom-form-label">Children (Number)</Form.Label>
+                                  <FormControl type="number" min="0" onChange={handleChange} name="children" />
                                 </Form.Group>
                               </Col>
                               <Col md={2}>
-                                <Form.Group controlId="others">
+                                <Form.Group controlId="othersid">
                                   <Form.Label className="custom-form-label">Others (Number)</Form.Label>
-                                  <FormControl type="number" min="0" name="others" />
+                                  <FormControl type="number" min="0"  onChange={handleChange}name="others" />
                                 </Form.Group>
                               </Col>
 
@@ -459,9 +528,9 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={3}>
-                                <Form.Group controlId="earningmembers">
+                                <Form.Group controlId="earningmembersid">
                                   <Form.Label className="custom-form-label" >Earning Members</Form.Label>
-                                  <Form.Control as="select" name="earningmembers" >
+                                  <Form.Control as="select" onChange={handleChange} name="earningmembers" >
                                     {
                                       dropDownLists.members.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -469,9 +538,9 @@ const currDate = date + "/" + smonth + "/" + year;
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="totalmembers">
+                                <Form.Group controlId="totalmembersid">
                                   <Form.Label className="custom-form-label" >Total Members</Form.Label>
-                                  <Form.Control as="select" name="totalmembers" >
+                                  <Form.Control as="select" onChange={handleChange} name="totalmembers" >
                                     {
                                       dropDownLists.members.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -482,9 +551,9 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={3}>
-                                <Form.Group controlId="earningmembers">
+                                <Form.Group controlId="earningmembersid">
                                   <Form.Label className="custom-form-label" >Current Residence (Yrs) *</Form.Label>
-                                  <Form.Control as="select" name="earningmembers" >
+                                  <Form.Control as="select" onChange={handleChange} name="earningmembers" >
                                     {
                                       dropDownLists.yearsresidence.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -492,9 +561,9 @@ const currDate = date + "/" + smonth + "/" + year;
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="totalmembers">
+                                <Form.Group controlId="currentmntresidentid">
                                   <Form.Label className="custom-form-label" >Current Residence (Mths) *</Form.Label>
-                                  <Form.Control as="select" name="totalmembers" >
+                                  <Form.Control as="select" name="currentmntresident" onChange={handleChange} >
                                     {
                                       dropDownLists.monthsresidence.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -502,9 +571,9 @@ const currDate = date + "/" + smonth + "/" + year;
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="earningmembers">
+                                <Form.Group controlId="residentofcityyrsid">
                                   <Form.Label className="custom-form-label" >Residence in Current City (Yrs) *</Form.Label>
-                                  <Form.Control as="select" name="earningmembers" >
+                                  <Form.Control as="select" name="residentofcityyrs" onChange={handleChange} >
                                     {
                                       dropDownLists.yearsresidence.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -512,9 +581,9 @@ const currDate = date + "/" + smonth + "/" + year;
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="totalmembers">
+                                <Form.Group controlId="residentofcitymthsid">
                                   <Form.Label className="custom-form-label" >Residence in Current City (Mths) *</Form.Label>
-                                  <Form.Control as="select" name="totalmembers" >
+                                  <Form.Control as="select" name="residentofcitymths" onChange={handleChange} >
                                     {
                                       dropDownLists.monthsresidence.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -525,9 +594,9 @@ const currDate = date + "/" + smonth + "/" + year;
 
                             <Row className="mt-3">
                               <Col md={3}>
-                                <Form.Group controlId="earningmembers">
+                                <Form.Group controlId="residencetypeid">
                                   <Form.Label className="custom-form-label" >Residence Type *</Form.Label>
-                                  <Form.Control as="select" name="earningmembers" >
+                                  <Form.Control as="select" name="residencetype" onChange={handleChange} >
                                     {
                                       dropDownLists.residenceTypes.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -535,9 +604,9 @@ const currDate = date + "/" + smonth + "/" + year;
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="totalmembers">
+                                <Form.Group controlId="distancefrmwrkspaceid">
                                   <Form.Label className="custom-form-label" >Distance from Work Place</Form.Label>
-                                  <Form.Control as="select" name="totalmembers" >
+                                  <Form.Control as="select" name="distancefrmwrkspace"  onChange={handleChange}>
                                     {
                                       dropDownLists.distanceRange.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -545,9 +614,9 @@ const currDate = date + "/" + smonth + "/" + year;
                                 </Form.Group>
                               </Col>
                               <Col md={3}>
-                                <Form.Group controlId="earningmembers">
+                                <Form.Group controlId="residenceownershipid">
                                   <Form.Label className="custom-form-label" >Residence Ownership *</Form.Label>
-                                  <Form.Control as="select" name="earningmembers" >
+                                  <Form.Control as="select" name="residenceownership" onChange={handleChange} >
                                     {
                                       dropDownLists.ownership.map((item, i) => (<option key={i} value={item.code}>{item.type}</option>))
                                     }
@@ -557,7 +626,7 @@ const currDate = date + "/" + smonth + "/" + year;
                               <Col md={3}>
                                 <Form.Group controlId="residencearea">
                                   <Form.Label className="custom-form-label" >Residence Premise Area (sq ft) *</Form.Label>
-                                  <FormControl type="number" min="0" name="residencearea" />
+                                  <FormControl type="number" min="0" name="residencearea" onChange={handleChange}  />
                                 </Form.Group>
                               </Col>
                             </Row>
