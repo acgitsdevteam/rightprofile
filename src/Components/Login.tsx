@@ -64,12 +64,7 @@ const Login = () => {
         edbranch:''
       };
 
-      // const credentials = {
-      //   username: 'psivaraju',
-      //   password: 'psivaraju',
-      //   usertype: 'Test',
-      // };
-
+      
       maskedCredentials.usertype = btoa(formData.usertype);
       maskedCredentials.password = btoa(formData.password);
       maskedCredentials.username = btoa(formData.username);
@@ -90,7 +85,7 @@ const Login = () => {
       const headers = {
         'Content-Type': 'text/plain',
       };
-      axios.post('https://3.7.159.34/rightprofile/api/auth/', encodedString, { headers })
+      axios.post(process.env.REACT_APP_API_URL+'/auth/', encodedString, { headers })
         .then(response => {
           console.log("Login Response data", response)
           localStorage.setItem("user_data",JSON.stringify(response.data));
@@ -149,21 +144,7 @@ const Login = () => {
   };
 
 
-  // useEffect(() => {
-  //   console.log("useEffect hook is called")
-  //   axios.get('https://3.7.159.34/rightprofile/api/hdfc/cd/list')
-  //       .then(response => {
-  //         console.log("Branches data", response);
-  //         setBranches(response.data);
-  //       }).catch((error) => {
-  //         console.log("Error response:", error)
-  //       });
-
-  // },[]);
-
-
   
-
   return (
     <React.Fragment>
       <div className="wrapper">
