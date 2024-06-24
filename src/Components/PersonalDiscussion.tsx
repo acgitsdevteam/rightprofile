@@ -125,7 +125,7 @@ const PersonalDiscussion = () => {
         }
 
         const response = await axios.post(
-          "https://3.7.159.34/rightprofile/api/app/list",
+          process.env.REACT_APP_API_URL+"/app/list",
           filterData,
           config
         );
@@ -136,7 +136,7 @@ const PersonalDiscussion = () => {
         filterData.page = 0;
 
         const countResponse = await axios.post(
-          "https://3.7.159.34/rightprofile/api/app/countbysearch",
+          process.env.REACT_APP_API_URL+"/app/countbysearch",
           filterData,
           config
         );
