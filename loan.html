@@ -93,14 +93,68 @@
 
             <div class="tab-content custom-tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    <h5 class="mt-3">
+                        Loan Summary<hr>
+                  </h5>
+                
 
-                </div>
-                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                    <div class="col-md-4 col-lg-6 mb-2 mt-3">
-                        <div class="title-header">
-                            <h4>Applicants</h4>
-                        </div>
+                <div class="row align-items-center">
+                    <div class="col-3 form-group">
+                        <label for="">Loan Amount Requested *</label>
+                        <input type="number" class="form-control" id="">
                     </div>
+                    <div class="col-3 form-group">
+                        <label for="">Customer Affordable EMI *</label>
+                        <input type="number" class="form-control" id="">
+                    </div>
+                    <div class="col-3 form-group">
+                        <label for="houses">Purpose of Loan *</label>
+                        <form>
+                            <select name="houses" class="loan-dropdown mb-2" style="height: 46px;">
+                                <option value=""></option>
+                                <option value="">Home Purchase-New</option>
+                                <option value="">Home Purchase-Resale</option>
+                                <option value="">Loan Of Business Purpose</option>
+                                <option value="">Plot Purchase</option>
+                                <option value="">Plot Purchase and Consturaction</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="col-3 form-group">
+                        <label for="branch">Branch *</label>
+                        <form>
+                            <select name="branch" class="loan-dropdown mb-2" style="height: 46px;">
+                                <option value=""></option>
+                                <option value="">Sagar</option>
+                                <option value="">Nasik</option>
+                                <option value="">Baroda</option>
+                                <option value="">Indore</option>
+                                <option value="">Jaipur</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-3">
+                    <div class="col-3">
+                        <h6>Application Number</h6>
+                    </div>
+                    <div class="col-3">
+                        <h6>Login Date</h6>
+                        <h5>20/06/2024</h5>
+                        <h5>03:24:09 PM</h5>
+                    </div>
+                </div>
+                <div class="pull-right mt-3 mb-3"
+                            ><button type="submit" class="btn btn-danger submit-button">
+                            <span class="circle bg-white"><i class="fa fa-arrow-left text-danger"></i></span>&nbsp;Cancel</button>
+                             <button type="submit" class="btn submit-cancel-btn submit-button">Save &amp; Continue &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-yellow"></i></span></button>
+                             <button type="submit" class="btn btn-success submit-button">Finalize &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-success"></i></span></button>
+                            </div>
+                        </div>
+                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                    <h5 class="mt-3">
+                        Applicants<hr>
+                  </h5>
                     <div class="card-box  mh-50">
                         <div class="table-responsive">
                             <table class="table">
@@ -230,7 +284,7 @@
                                     </div>
                                     <div class="col-1 form-group">
                                         <div class="row justify-content-center">
-                                            <div class="col-sm-12 text-center">
+                                            <div class="col-sm-12 text-center mt-4">
                                                 <button type="button" class="btn btn-danger">Fetch</button>
                                             </div>
                                         </div>
@@ -492,11 +546,9 @@
 
                         </div>
                         <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
-                            <div class="col-md-4 col-lg-6 mb-2 mt-3">
-                                <div class="title-header">
-                                    <h4>Banking  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a></h4>
-                                </div>
-                            </div>
+                         <h5 class="mt-3">
+                                        Banking  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a><hr>
+                        </h5> 
                             <div class="card-box  mh-50">
                                 <div class="table-responsive">
                                     <table class="table">
@@ -804,11 +856,8 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
-                            <div class="col-md-4 col-lg-6 mb-2 mt-3">
-                                <div class="title-header">
-                                    <h4>Repayments  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a></h4>
-                                </div>
-                            </div>
+                                    <h5 class="mt-3">Repayments  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a><hr></h5>
+                              
                             <div class="card-box  mh-50">
                                 <div class="table-responsive">
                                     <table class="table">
@@ -1128,9 +1177,9 @@
                     </div>
                         </div>
                         <div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
-                            <h4 class="mt-3">
-                                    Instruments  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a>
-                              </h4>
+                            <h5 class="mt-3">
+                                    Instruments  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a><hr>
+                              </h5>
                             <div class="row mt-3">
                                 <div class="col-md-4 col-sm-6 col-xs-12 ">
                                     <label for="contractName">Immovable Property - Market Value</label>
@@ -1363,15 +1412,414 @@
                     
                     
                 </div>
-                <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-
+                <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                    <h5 class="mt-3">
+                        Monthly Household Expenses  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a><hr>
+                  </h5>
+                <div class="row align-items-center mt-3">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ">
+                        <label for="contractName">Food / Kirana, Clothing and daily requirement expenses</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2">
+                        <input type="number"  class="form-control"  placeholder="0" min="0">
+                    </div>
                 </div>
-                <div class="tab-pane fade show active" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12 ">
+                        <label for="contractName">Rent of residence premise</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2">
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Medical expenses of regular nature</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Schooling fees</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2">
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Private tuition fees</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Electricity</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Landline bill</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Mobile bill</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Travel and Conveyance</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Hotel expenses</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Entertainment</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Credit card payment</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Insurance premium</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Family help</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <input type="number" class="form-control" placeholder="0" min="0">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <label for="contractName">Total Monthly Household Expenses *</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 required p-2" >
+                        <h5><span class="badge bg-warning"><span style='font-size:15px;'>&#8377;0</span></span></h5>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12 form-group">
+                        <label for="remarks">Remarks:</label>
+                        <textarea class="form-control" id="remarks" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="pull-right mt-3 mb-3"
+                ><button type="submit" class="btn btn-danger submit-button">
+                <span class="circle bg-white"><i class="fa fa-arrow-left text-danger"></i></span>&nbsp;Cancel</button>
+                 <button type="submit" class="btn submit-cancel-btn submit-button">Save &amp; Continue &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-yellow"></i></span></button>
+                 <button type="submit" class="btn btn-success submit-button">Finalize &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-success"></i></span></button>
+                </div>
+                </div>
+                <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                    <h4 class="mt-3">
+                        Property Details<hr>
+                  </h4>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="customersSeen">
+                          <label class="form-check-label" for="customersSeen">
+                              Property Selected?
+                          </label>
+                      </div>
+                  </div>
+                  <div class="col-4 form-group">
+                      <label for="District">Construction Progress in % *</label>
+                      <input type="number" class="form-control" id="">
+                  </div> 
+                  <div class="col-4 form-group">
+                    <label for="">Estimated value of Construction *</label>
+                    <input type="number" class="form-control" id="">
+                </div>
+                </div>
+                <div class="row align-items-center">
+                <div class="col-4 form-group">
+                    <label for="location">Property Location *</label>
+                    <form>
+                        <select name="area" class="loan-dropdown mb-2" style="width: 310px;height: 45px;">
+                            <option value="">Please Select</option>
+                            <option value="">Rural</option>
+                            <option value="">Tier 1</option>
+                            <option value="">Tier 2</option>
+                            <option value="">Tier 3</option>
+                            <option value="">Urban</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">Carpet Area (sq ft) *</label>
+                    <input type="number" class="form-control" id="">
+                </div>
+                <div class="col-4 form-group">
+                    <label for="location">Property Type *</label>
+                    <form>
+                        <select name="house" class="loan-dropdown mb-2" style="width: 310px;height: 45px;">
+                            <option value="">Bungalow</option>
+                            <option value="">Duplex</option>
+                            <option value="">Flat/Apartment</option>
+                            <option value="">Plot</option>
+                            <option value="">Row House</option>
+                        </select>
+                    </form>
+                </div>
+                  </div>
+                  <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4>Property Address</h4>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span><a href="#">Delete My Account </a></span>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-4 form-group">
+                        <label for="Pincode">Pincode*:</label>
+                        <input type="text" class="form-control" id="Pincode">
+                    </div>
+                    <div class="col-1 form-group">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 text-center align-items-center mt-4">
+                                <button type="button" class="btn btn-danger">Fetch</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-4 form-group">
+                        <label for="username2">Address Line1 *:</label>
+                        <input type="text" class="form-control" id="Address">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="lastname2">Address Line2 *</label>
+                        <input type="text" class="form-control" id="Address">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="username2">City/Village *:</label>
+                        <input type="text" class="form-control" id="city">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    
+                    <div class="col-4 form-group">
+                        <label for="District">Locality*</label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="text">District*:</label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="tezt">State/Union Territory*</label>
+                        <input type="text" class="form-control" id="State">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12 form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="Active">
+                            <label class="form-check-label" for="Active">Do you want to confirm this address for property distance calculation?</label>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="mt-3">
+                    Property Use *<hr>
+              </h4>
+              <div class="row align-items-center">
+                <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="customersSeen">
+                    <label class="form-check-label" for="customersSeen">
+                        Self-Occupy
+                    </label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="customersSeen">
+                    <label class="form-check-label" for="customersSeen">
+                        Weekend Home
+                    </label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="customersSeen">
+                    <label class="form-check-label" for="customersSeen">
+                        Investment
+                    </label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="customersSeen">
+                    <label class="form-check-label" for="customersSeen">
+                        Will Rent Out
+                    </label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="customersSeen">
+                    <label class="form-check-label" for="customersSeen">
+                        For 3rd Party
+                    </label>
+                </div>
+            </div>
+              </div>
+              <div class="row align-items-center mt-3">
+                <div class="col-4 form-group">
+                    <label for="location">This property is customer’s (Transaction Order) *</label>
+                    <form>
+                        <select name="area" class="loan-dropdown mb-2" style="width: 310px;height: 45px;">
+                            <option value=""></option>
+                            <option value="">1st Home</option>
+                            <option value="">2nd Home</option>
+                            <option value="">>2nd Home</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">Transaction Cost *</label>
+                    <input type="number" class="form-control" id="">
+                </div>
+                <div class="col-4 form-group">
+                        <label for="">Market Value *</label>
+                        <input type="number" class="form-control" id="">
+                </div>
+                  </div>
+                  <h5 class="mt-3">
+                    Own Contributions  <a href="#"> <i class="fa fa-plus fa-lg" style="color:#218ac2"></i></a><hr>
+              </h5>
+            <div class="row mt-3">
+                <div class="col-md-4 col-sm-6 col-xs-12 ">
+                    <label for="contractName">Personal Loan</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Sale of Assets / Property</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Sale of Jewellery</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Savings</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Disposal of Investment</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Credit Society</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Chit Fund</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Friends / Relatives / Family</label>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 required" style="margin-top:-5px">
+                    <input type="number" class="form-control" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <label for="contractName">Total Own Contribution *</label>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 required" >
+                    <h5><span class="badge bg-warning"><span style='font-size:15px;'>&#8377;0</span></span></h5>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-12 form-group">
+                    <label for="">Remarks:</label>
+                    <textarea class="form-control" id="remarks" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="pull-right mt-3 mb-3"
+                ><button type="submit" class="btn btn-danger submit-button">
+                <span class="circle bg-white"><i class="fa fa-arrow-left text-danger"></i></span>&nbsp;Cancel</button>
+                 <button type="submit" class="btn submit-cancel-btn submit-button">Save &amp; Continue &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-yellow"></i></span></button>
+                 <button type="submit" class="btn btn-success submit-button">Finalize &nbsp; <span class="circle bg-white"><i class="fa fa-arrow-right text-success"></i></span></button>
+                </div>
+
 
                 </div>
             </div>
-
-
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
