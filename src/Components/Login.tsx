@@ -205,7 +205,6 @@ const Login = () => {
                       id="showPassword"
                       label="Show Password"
                       onClick={togglePasswordVisibility}
-                      style={{fontWeight:400}}
 
                     />
                   </Form.Group>

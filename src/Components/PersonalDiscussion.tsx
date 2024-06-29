@@ -158,9 +158,25 @@ const PersonalDiscussion = () => {
 
   };
 
+  
+
+  const handleNameClick = (id:any) => {
+    navigate(`/loan/${id}`);
+  };
+
   const columns = [
     { dataField: "File_No", text: "File Number", sort: true },
-    { dataField: "Name", text: "Applicant Name", sort: true },
+    { 
+      dataField: "Name", text: "Applicant Name", sort: true,
+      formatter: (cell:any, row:any) => (
+        <span
+          style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
+          onClick={() => handleNameClick(row.fileappno)}
+        >
+          {cell}
+        </span>
+      ),
+     },
     { dataField: "Loan_Amount", text: "Loan Amount", sort: true },
     { dataField: "Reach_Status", text: "Status", sort: true },
     { dataField: "User_Id", text: "USER ID", sort: true },
@@ -168,6 +184,11 @@ const PersonalDiscussion = () => {
   ];
 
 
+  const customTotal = (from:number, to:number, size:number) => (
+    <span  style={{margin:'136px'}}>
+      Showing {(from>0?from:1)} to {(to>0?to:10)} of {size} entries
+    </span>
+  );
 
   const paginationOptions = {
     page,
@@ -181,8 +202,25 @@ const PersonalDiscussion = () => {
 
     },
     onSizePerPageChange: (sizePerPage: number) => setSizePerPage(sizePerPage),
+    sizePerPageList: [
+      { text: '10', value: 10 },
+      { text: '25', value: 25 },
+      { text: '50', value: 50 },
+      { text: '100', value: 100 },
+      
+    ],
+    showTotal: true,
+    paginationTotalRenderer: (from:number, to:number, size:number) => (
+      <span style={{margin:'138px'}}>{`Showing ${(from>0?from:1)} to ${(to>0?to:10)} of ${size} entries`}</span>
+    ),
 
   };
+
+  const NoDataIndication = () => (
+    <div className="text-center mt-3">
+      <p>No Applications Available</p>
+    </div>
+  );
 
   return (
     <>
@@ -211,7 +249,7 @@ const PersonalDiscussion = () => {
                 <Form.Control type="text" onChange={handleChange} placeholder="Enter first name" ref={firstname} />
               </Col>
               <Col xs={1} className="form-group">
-                <Form.Label htmlFor="fname">Last name:</Form.Label>
+                <Form.Label >Last name:</Form.Label>
               </Col>
               <Col xs={3} className="form-group">
                 <Form.Control type="text" onChange={handleChange} placeholder="Enter last name" ref={lastname} />
@@ -226,14 +264,14 @@ const PersonalDiscussion = () => {
             <Row>
               <Col xs={1} className="label-end">Status :</Col>
               <Col xs={3} className="form-group">
-                <Form.Control as="select" onChange={handleChange} ref={status} >
+                <Form.Select  onChange={handleChange} ref={status} >
                   <option value="">--All--</option>
                   <option value="PD_COMPLETED">Completed</option>
                   <option value="DRAFT">Draft</option>
                   <option value="ERROR">Error</option>
                   <option value="RIGHTPROFILE_GENERATED">RightProfile™ Generated</option>
                   <option value="REPORT_GENERATED">PDF Report Generated (final)</option>
-                </Form.Control>
+                </Form.Select>
               </Col>
               <Col xs={1} className="form-group">
                 <Form.Label htmlFor="fname">Start :</Form.Label>
@@ -269,6 +307,8 @@ const PersonalDiscussion = () => {
           <Link to="/loan"><i className="fa fa-plus fa-lg" aria-hidden="true"></i></Link></a></strong>
           </div>
           <img style={{ display: loading ? 'block' : 'none' }} className="loading-img" src={`${process.env.PUBLIC_URL}/loading-wheel.gif`} alt="" width="90" height="90" />
+         
+        
           <BootstrapTable
             keyField="id"
             data={data}
@@ -276,8 +316,10 @@ const PersonalDiscussion = () => {
             pagination={paginationFactory(paginationOptions)}
             remote={{ pagination: true }}
             onTableChange={handleTableChange}
+            noDataIndication = {NoDataIndication}
 
           />
+          
         </div>
 
 

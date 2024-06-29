@@ -20,6 +20,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/personal" element={<PersonalDiscussion />} />
           <Route path="/loan" element={<LoanCreationPhases />} />
+          <Route path="/loan/:applicationID" element={<LoanCreationPhases />} />
           <Route path="/users" element={<Users />} />
           <Route path="*" element={<NotFound />} />
           

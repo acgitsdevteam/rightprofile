@@ -2,6 +2,13 @@ import React from 'react';
 import { Routes, Route, Link, useNavigate, BrowserRouter, NavLink, useNavigation } from 'react-router-dom';
 import { DropdownButton, Button, Dropdown } from 'react-bootstrap';
 
+const userData = localStorage.getItem("user_data");
+  if (!userData) {
+    throw new Error("No user data found in local storage");
+  }
+
+  const user = (userData?JSON.parse(userData):"");
+
 
 
 const SideMenu = () => {
@@ -52,29 +59,17 @@ const SideMenu = () => {
           <Button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
             <span className="icon-menu"></span>
           </Button>
-          <ul className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto" style={{marginRight:'18px'}}>
             <li className="nav-item dropdown no-arrow user-menu">
               <Dropdown>
                 <Dropdown.Toggle as="a" className="nav-link dropdown-toggle" id="userDropdown" role="button">
                   <span className="user-avatar-icon">
-                    sivaraju <span className="fa fa-cog fa-lg"></span>
+                    {(user?user.username:"")} <span className="fa fa-cog fa-lg"></span>
                   </span>
                   <span className="d-none d-lg-inline text-gray-600 small"></span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="shadow animated--grow-in">
-                  {/* <Dropdown.Item href="#">
-                  <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </Dropdown.Item>
-                <Dropdown.Item href="#">
-                  <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </Dropdown.Item>
-                <Dropdown.Item href="#">
-                  <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </Dropdown.Item>
-                <Dropdown.Divider /> */}
+                 
                   <Dropdown.Item href="javascript:void(0)" onClick={logout}>
                     <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
